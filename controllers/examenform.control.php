@@ -76,7 +76,6 @@
               $viewData["modeDsc"] = $modeDesc[$mode];
               //validaciones
               if (floatval($viewData["MMGBpluying"]) <= 0) {
-                  $errores[] = "El pluying no debe ser 0";
                   $hasError = true;
               }
               if (!$hasError && agregarNuevoPluying(
@@ -93,7 +92,7 @@
               }
               break;
           case 'UPD':
-              $viewData["modeDsc"] = $modeDesc[$mode] . $viewData["dscMMGBpersona"];
+              $viewData["modeDsc"] = $modeDesc[$mode] . $viewData["MMGBcodigo"];
               if (modificarJuguete(
                   $viewData["MMGBurlcdn"],
                   $viewData["MMGBpluying"],
@@ -103,7 +102,7 @@
               )
               ) {
                   redirectWithMessage(
-                      "Juguete Actualizado Exitosamente",
+                      "Persona Actualizado Exitosamente",
                       "index.php?page=examenlist"
                   );
                   die();
@@ -118,7 +117,7 @@
               )
               ) {
                   redirectWithMessage(
-                      "Juguete Eliminado Exitosamente",
+                      "Persona Eliminado Exitosamente",
                       "index.php?page=examenlist"
                   );
                   die();
@@ -127,7 +126,7 @@
           }
       }
       $viewData["mode"] = $mode;
-      $viewData["estadoPersona"] = addSelectedCmbArray($estadoPersona, 'cod', $selectedEst);
+      $viewData["MMGBestado"] = addSelectedCmbArray($estadoPersona, 'MMGBestado', $selectedEst);
       $viewData["hasErrors"] = $hasError;
       $viewData["errores"] = $errores;
       renderizar("examenform", $viewData);
